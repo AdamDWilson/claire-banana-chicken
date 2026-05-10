@@ -39,14 +39,14 @@ export function BodyBase({ skin }: { skin: string }) {
         fill={skin}
         {...linecaps}
       />
-      {/* Arms */}
+      {/* Arms — chunky tubes so the forearm/hand peeks out below the sleeve */}
       <path
-        d="M 70 138 Q 55 175 58 210 Q 60 215 65 213"
+        d="M 70 138 Q 50 175 54 215 Q 58 226 70 224 Q 78 220 76 200 Q 78 170 80 142 Z"
         fill={skin}
         {...linecaps}
       />
       <path
-        d="M 130 138 Q 145 175 142 210 Q 140 215 135 213"
+        d="M 130 138 Q 150 175 146 215 Q 142 226 130 224 Q 122 220 124 200 Q 122 170 120 142 Z"
         fill={skin}
         {...linecaps}
       />
@@ -262,88 +262,80 @@ export function Mouth({ style }: { style: string }) {
 
 // --- Tops -------------------------------------------------------------------
 
-const torsoPath =
-  'M 56 140 Q 50 175 54 220 Q 100 230 146 220 Q 150 175 144 140 Q 100 148 56 140 Z';
-
-const sleeveLeft =
-  'M 56 140 Q 42 175 48 210 Q 56 215 64 212 Q 60 175 62 142';
-const sleeveRight =
-  'M 144 140 Q 158 175 152 210 Q 144 215 136 212 Q 140 175 138 142';
+// Real T-shirt silhouette: rounded neckline, sloped shoulders, cap sleeves
+// flaring out past the body, slightly tapered hem.
+const shirtPath =
+  'M 66 142 Q 100 156 134 142 L 150 138 Q 168 138 170 152 L 174 178 Q 168 184 142 180 L 142 232 Q 100 244 58 232 L 58 180 Q 32 184 26 178 L 30 152 Q 32 138 50 138 L 66 142 Z';
 
 export function Top({ id, color }: { id: string; color: string }) {
   switch (id) {
     case 'to-tee':
-      return (
-        <g>
-          <path d={sleeveLeft} fill={color} {...linecaps} />
-          <path d={sleeveRight} fill={color} {...linecaps} />
-          <path d={torsoPath} fill={color} {...linecaps} />
-        </g>
-      );
+      return <path d={shirtPath} fill={color} {...linecaps} />;
     case 'to-stripes':
       return (
         <g>
-          <path d={sleeveLeft} fill="#e0533a" {...linecaps} />
-          <path d={sleeveRight} fill="#e0533a" {...linecaps} />
-          <path d={torsoPath} fill="#ffffff" {...linecaps} />
-          <g clipPath="url(#cbc-torso-clip)">
-            <rect x={40} y={148} width={120} height={8} fill="#e0533a" />
-            <rect x={40} y={168} width={120} height={8} fill="#e0533a" />
-            <rect x={40} y={188} width={120} height={8} fill="#e0533a" />
-            <rect x={40} y={208} width={120} height={8} fill="#e0533a" />
+          <path d={shirtPath} fill="#ffffff" {...linecaps} />
+          <g clipPath="url(#cbc-shirt-clip)">
+            <rect x={20} y={148} width={170} height={8} fill="#e0533a" />
+            <rect x={20} y={168} width={170} height={8} fill="#e0533a" />
+            <rect x={20} y={188} width={170} height={8} fill="#e0533a" />
+            <rect x={20} y={208} width={170} height={8} fill="#e0533a" />
+            <rect x={20} y={228} width={170} height={8} fill="#e0533a" />
           </g>
+          <path d={shirtPath} fill="none" {...linecaps} />
         </g>
       );
     case 'to-plaid':
       return (
         <g>
-          <path d={sleeveLeft} fill="#a8302a" {...linecaps} />
-          <path d={sleeveRight} fill="#a8302a" {...linecaps} />
-          <path d={torsoPath} fill="#c44a4a" {...linecaps} />
-          <g clipPath="url(#cbc-torso-clip)">
-            <rect x={40} y={150} width={120} height={4} fill="#3a2a1a" />
-            <rect x={40} y={175} width={120} height={4} fill="#3a2a1a" />
-            <rect x={40} y={200} width={120} height={4} fill="#3a2a1a" />
-            <rect x={70} y={140} width={4} height={90} fill="#3a2a1a" />
-            <rect x={100} y={140} width={4} height={90} fill="#3a2a1a" />
-            <rect x={130} y={140} width={4} height={90} fill="#3a2a1a" />
+          <path d={shirtPath} fill="#c44a4a" {...linecaps} />
+          <g clipPath="url(#cbc-shirt-clip)">
+            <rect x={20} y={155} width={170} height={4} fill="#3a2a1a" />
+            <rect x={20} y={185} width={170} height={4} fill="#3a2a1a" />
+            <rect x={20} y={215} width={170} height={4} fill="#3a2a1a" />
+            <rect x={70} y={138} width={4} height={100} fill="#3a2a1a" />
+            <rect x={100} y={138} width={4} height={100} fill="#3a2a1a" />
+            <rect x={130} y={138} width={4} height={100} fill="#3a2a1a" />
           </g>
+          <path d={shirtPath} fill="none" {...linecaps} />
         </g>
       );
     case 'to-rainbow':
       return (
         <g>
-          <path d={sleeveLeft} fill="#e0533a" {...linecaps} />
-          <path d={sleeveRight} fill="#a87bd1" {...linecaps} />
-          <path d={torsoPath} fill="#fff" {...linecaps} />
-          <g clipPath="url(#cbc-torso-clip)">
-            <rect x={40} y={140} width={120} height={14} fill="#e0533a" />
-            <rect x={40} y={154} width={120} height={14} fill="#f29240" />
-            <rect x={40} y={168} width={120} height={14} fill="#f5cf52" />
-            <rect x={40} y={182} width={120} height={14} fill="#6dbf83" />
-            <rect x={40} y={196} width={120} height={14} fill="#5aa9ff" />
-            <rect x={40} y={210} width={120} height={14} fill="#a87bd1" />
+          <path d={shirtPath} fill="#fff" {...linecaps} />
+          <g clipPath="url(#cbc-shirt-clip)">
+            <rect x={20} y={140} width={170} height={16} fill="#e0533a" />
+            <rect x={20} y={156} width={170} height={16} fill="#f29240" />
+            <rect x={20} y={172} width={170} height={16} fill="#f5cf52" />
+            <rect x={20} y={188} width={170} height={16} fill="#6dbf83" />
+            <rect x={20} y={204} width={170} height={16} fill="#5aa9ff" />
+            <rect x={20} y={220} width={170} height={20} fill="#a87bd1" />
           </g>
+          <path d={shirtPath} fill="none" {...linecaps} />
         </g>
       );
     case 'to-dots':
       return (
         <g>
-          <path d={sleeveLeft} fill="#ff8fbf" {...linecaps} />
-          <path d={sleeveRight} fill="#ff8fbf" {...linecaps} />
-          <path d={torsoPath} fill="#ff8fbf" {...linecaps} />
-          <g clipPath="url(#cbc-torso-clip)" fill="#fff">
-            <circle cx={70} cy={155} r={4} />
-            <circle cx={100} cy={150} r={4} />
-            <circle cx={130} cy={158} r={4} />
-            <circle cx={85} cy={175} r={4} />
-            <circle cx={115} cy={180} r={4} />
-            <circle cx={70} cy={195} r={4} />
-            <circle cx={100} cy={200} r={4} />
-            <circle cx={130} cy={195} r={4} />
-            <circle cx={85} cy={215} r={4} />
-            <circle cx={115} cy={215} r={4} />
+          <path d={shirtPath} fill="#ff8fbf" {...linecaps} />
+          <g clipPath="url(#cbc-shirt-clip)" fill="#fff">
+            <circle cx={45} cy={160} r={3.5} />
+            <circle cx={70} cy={155} r={3.5} />
+            <circle cx={100} cy={160} r={3.5} />
+            <circle cx={130} cy={155} r={3.5} />
+            <circle cx={155} cy={160} r={3.5} />
+            <circle cx={60} cy={180} r={3.5} />
+            <circle cx={85} cy={185} r={3.5} />
+            <circle cx={115} cy={180} r={3.5} />
+            <circle cx={140} cy={185} r={3.5} />
+            <circle cx={70} cy={205} r={3.5} />
+            <circle cx={100} cy={210} r={3.5} />
+            <circle cx={130} cy={205} r={3.5} />
+            <circle cx={85} cy={228} r={3.5} />
+            <circle cx={115} cy={228} r={3.5} />
           </g>
+          <path d={shirtPath} fill="none" {...linecaps} />
         </g>
       );
     default:
@@ -509,12 +501,12 @@ export function Accessory({ id }: { id: string }): JSX.Element | null {
   }
 }
 
-// Shared clip path so patterned tops stay inside the torso silhouette.
-export function TorsoClipDef() {
+// Shared clip path so patterned tops stay inside the shirt silhouette.
+export function ShirtClipDef() {
   return (
     <defs>
-      <clipPath id="cbc-torso-clip">
-        <path d={torsoPath} />
+      <clipPath id="cbc-shirt-clip">
+        <path d={shirtPath} />
       </clipPath>
     </defs>
   );

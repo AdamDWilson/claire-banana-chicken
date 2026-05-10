@@ -8,7 +8,7 @@ import {
   Bottom,
   Shoes,
   Accessory,
-  TorsoClipDef,
+  ShirtClipDef,
 } from './parts';
 import {
   SKIN_TONES,
@@ -65,7 +65,7 @@ export function CharacterPreview({ character, size = 280, idle = true }: Props) 
         transformOrigin: 'center bottom',
       }}
     >
-      <TorsoClipDef />
+      <ShirtClipDef />
       <BodyBase skin={skin} />
       {bottomVisible && (
         <Bottom id={character.bottomId} color={bottomColor} />

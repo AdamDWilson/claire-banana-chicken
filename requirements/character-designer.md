@@ -41,18 +41,16 @@ Kids should be able to back out of any step and re-enter without losing progress
 
 Tabs, in this order. Tab labels and icons are hand-drawn in Claire's style.
 
-1. **Skin** — skin tone (8 realistic options).
-2. **Hair** — style (~10, mix of short/long/curly/coily/braided/bald/headwrap) **and** color (10, natural + fun colors like pink/blue/green for hair only). Both choices live inside this tab — style row on top, color row below.
-3. **Eyes** — eye shape (~6 options, drawn simply à la Claire's wireframe: dashes, dots, ovals, x's, sleepy lids), plus eye color (6) for non-line styles.
-4. **Mouths** — mouth shape (~6: smile, big grin, little 'o', flat line, tongue-out, teeth). No color choice.
-5. **Top** — shirts, dresses, hoodies (~8 options). **Must include patterned options**: plaid, rainbow, stripes, polka dot (per Claire's drawings). Color palette applies to solid options.
-6. **Bottom** — pants, shorts, skirts (~6 options × small color palette). Hidden if the Top is a full-length dress.
-7. **Shoes** — (~5 options × colors).
-8. **Accessories** — glasses, hats, backpacks, pets-on-shoulder (~8 options, optional, can be "none").
+1. **Skin** — skin tones from Claire's wireframe palette (she drew ~6); we add 2 more in the same style so the set covers a fuller range of real skin tones inclusively.
+2. **Hair** — styles Claire drew (her hair-options grid) + a few extras in her style for coverage (e.g. a coily, a braid, a headwrap if not already in her set), and hair colors from her wireframe (with a few fun ones like pink/blue added). Style row on top, color row below.
+3. **Eyes** — the eye shapes Claire drew (dashes, dots, ovals, x's, etc.), plus eye color for non-line styles.
+4. **Mouths** — the mouth shapes Claire drew. No color choice.
+5. **Top** — shirts she drew, including her **plaid**, **rainbow**, **stripes**, and **polka dot** patterns (fixed colors). Solid-color tops are recolorable from the swatch row.
+6. **Bottom** — pants/shorts/skirts. Claire's wireframe didn't focus on these; we draw a small set in her style. Recolorable. Hidden if the Top is a full-length dress.
+7. **Shoes** — small set drawn in her style. Recolorable.
+8. **Accessories** — Claire's accessory icons (the hats, the key/lock, etc.) plus a couple extras in her style; "none" is always an option.
 
-Each tab opens a horizontally swipeable carousel of large thumbnails. Selecting an option updates the preview live.
-
-Counts above are targets for v1 — exact numbers TBD when we draw assets.
+Each tab opens a horizontally swipeable carousel of large thumbnails. Selecting an option updates the preview live. **The v1 catalogue is whatever Claire drew, filled in only where coverage requires it.**
 
 ## 5. Screen Layout
 
@@ -165,14 +163,17 @@ Resolved:
 - ✅ Working title: "claire-banana-chicken" (final name TBD).
 - ✅ Four clothing patterns: plaid, rainbow, stripes, polka dot.
 
+Also resolved:
+
+- ✅ Home-screen mascot is a generic "tap me" stand-in, not a recurring guide character with its own identity.
+- ✅ Patterned clothing has fixed colors (rainbow is always rainbow, plaid is a fixed scheme, etc.). Color swatches don't apply to patterned items.
+- ✅ Mid-edit exit auto-saves a draft per slot. Tapping Edit on that slot resumes where the kid left off; tapping Play uses the last-saved (non-draft) version.
+- ✅ **v1 asset set is drawn directly from Claire's wireframe.** Whatever she drew (skin tones she chose, hair styles she sketched, eye/mouth doodles, the specific shirts she drew including the rainbow and plaid, her accessory icons) becomes the v1 catalogue. Where her wireframe doesn't cover something we still need (e.g. shoes, bottoms, a few more skin tones for inclusivity), we fill in by drawing **in the same hand-drawn style** so the set feels consistent.
+
 Still open:
 
-- **Mascot identity**: is the home-screen mascot a specific recurring character (with its own look/personality, "the guide"), or just a generic kid-drawn stand-in that empty slots show as a prompt?
-- **Patterned clothing recoloring**: do patterns have fixed colors (rainbow is always rainbow, plaid is fixed red/black, etc.) or can patterned items be recolored too?
-- **Settings affordance**: with no audio in v1, is there anything to put in a settings drawer? Probably drop it from v1 and add when music ships.
-- **v1 asset counts**: full target counts in §4 are ambitious for a first release. Ship the full set, or a smaller "starter" set (e.g. 4 of each category) and grow it after first feedback from Claire playing it?
-- **Edit vs Surprise interplay**: when editing an already-saved character, should the Surprise 🎲 button be allowed (it overwrites their work) or hidden?
-- **Mid-edit exit**: if a kid taps Home before saving, do we silently lose changes, auto-save a draft, or prompt?
+- **Settings affordance**: with no audio in v1, is there anything to put in a settings drawer? Probably drop the gear icon from v1 and add when music ships.
+- **Edit vs Surprise interplay**: when editing an already-saved character, should the Surprise 🎲 button be allowed (it overwrites their work) or hidden? Lean toward "allowed" — it's a kid game, randomness is part of the fun.
 
 ## 13. Acceptance Criteria (draft)
 

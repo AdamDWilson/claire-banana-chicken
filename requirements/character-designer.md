@@ -30,12 +30,12 @@ Let a kid create a character that's *theirs*: pick body, face, hair, outfit, and
 
 ## 3. Core User Flow
 
-1. **Home screen**: a hand-drawn mascot character stands on screen. Label: "Tap me to make your character!" with a little arrow pointing at the mascot (echoing Claire's "If you press that you can make your character" note). If a saved character exists, the mascot is replaced by the saved character, with two buttons: "Keep playing" and "Start over."
-2. **Designer screen**: large character preview on one side, category tabs + options on the other.
-3. **Save screen**: short celebration ("Looking good!"), name the character (optional, skippable), tap Save.
-4. Returns to home with the new character displayed.
+1. **Home screen**: two side-by-side "spots." Each spot is either empty (shows the hand-drawn mascot with a "Tap me!" arrow, echoing Claire's "If you press that you can make your character" note) or filled (shows that slot's saved character with **Play** / **Edit** / **Start over** actions).
+2. **Designer screen** (reached by tapping an empty spot or Edit on a filled one): large character preview on one side, category tabs + options on the other.
+3. **Save**: tap the big Save ✓ button. Short celebration animation ("Looking good!").
+4. Returns to home with the new character occupying its slot.
 
-Kids should be able to back out of any step and re-enter without losing progress.
+Kids should be able to back out of any step and re-enter without losing progress. A back/home button is always visible in the top-left of the designer.
 
 ## 4. Customization Categories (v1)
 
@@ -56,7 +56,7 @@ Counts above are targets for v1 — exact numbers TBD when we draw assets.
 
 ## 5. Screen Layout
 
-### Home screen (landscape)
+### Home screen (landscape) — two slots
 
 ```
 ┌─────────────────────────────────────────────────────────┐
@@ -64,16 +64,19 @@ Counts above are targets for v1 — exact numbers TBD when we draw assets.
 │                                                         │
 │                Make Your Character!                     │
 │                                                         │
-│                       ╭─────╮                           │
-│                       │ :)  │   ← tap me!               │
-│                       ╰──┬──╯                           │
-│                       ╱     ╲                           │
-│                                                         │
-│                                                         │
+│        ┌──────────────┐         ┌──────────────┐        │
+│        │   ╭─────╮    │         │   ╭─────╮    │        │
+│        │   │ :)  │    │         │   │  ?  │    │        │
+│        │   ╰──┬──╯    │         │   ╰──┬──╯    │        │
+│        │   ╱     ╲    │         │   ╱     ╲    │        │
+│        │  [▶ Play]    │         │  [tap me!]   │        │
+│        │ [Edit][↺]    │         │              │        │
+│        └──────────────┘         └──────────────┘        │
+│           slot 1 (filled)          slot 2 (empty)       │
 └─────────────────────────────────────────────────────────┘
 ```
 
-Mascot is drawn in Claire's wobbly-marker style, gently bobbing (paused if `prefers-reduced-motion`).
+Empty slots show the hand-drawn mascot bobbing gently (paused if `prefers-reduced-motion`). Filled slots show the saved character idling (see §7 — blink + small sway).
 
 ### Designer screen (landscape — primary)
 
@@ -112,22 +115,23 @@ Stack: preview on top (55% height), tab strip + carousel below (45%), Save butto
 
 ## 7. Visual Style
 
-- **Icons, mascot, category glyphs, and the Surprise/Save button art**: hand-drawn in Claire's style — marker/pencil texture, slightly wobbly outlines, hand-lettered labels where labels are needed.
+- **Icons, mascot, category glyphs, and the Surprise/Save button art**: hand-drawn in Claire's style — marker/pencil texture, slightly wobbly outlines, hand-lettered labels where labels are needed. For v1 we will *create* these in Claire's style based on her wireframe (not scan her originals yet — that's a possible later upgrade).
 - **Character preview itself**: a cleaner illustrated style (flat vector, thick rounded outlines, soft palette — "modern picture book") so swaps line up reliably. The contrast between the "kid-drawn UI" and the "storybook character" is intentional — it should feel like the player is drawing the character into being.
 - Character composed of layered SVG parts so each piece can be swapped/recolored independently. Layer order (back→front): background, body shape, bottom, top, shoes, head/face base, eyebrows, eyes, mouth, freckles, hair, accessories.
 - All parts share an anchor system so swaps line up without per-asset tweaking.
+- **Idle animation**: the character preview blinks every few seconds and gently sways (~2° rotation, ~3 s loop). Disabled under `prefers-reduced-motion`. The home-screen mascot uses the same idle.
 
-## 8. Audio (optional v1)
+## 8. Audio
 
-- Soft "pop" when a new option is applied.
-- Gentle chime on Save.
-- Muted by default. Toggle in the top bar.
+- **No sound effects in v1.**
+- Background music is planned for a later version (gentle, loopable, instrumental). The audio toggle in the top bar will appear when music ships, not before.
 
 ## 9. Persistence
 
-- Character config (a small JSON object: ids + colors + optional name) saved to `localStorage` under a versioned key (e.g. `cbc.character.v1`).
-- One save slot in v1. Multiple slots is a future enhancement.
-- "Start over" prompts a confirmation ("Are you sure? Your character will be lost.") with kid-readable Yes/No icons.
+- Character config (a small JSON object: ids + colors) saved to `localStorage` under a versioned key (e.g. `cbc.characters.v1`).
+- **Two save slots** in v1 — enough for two siblings to each have a character. Slots are shown as two side-by-side "spots" on the home screen; an empty spot shows the mascot inviting a tap, a filled spot shows that saved character.
+- Each filled slot has small actions: **Play** (large, primary), **Edit** (re-opens the designer pre-filled with that character's config), **Start over** (clears the slot, with a confirmation dialog using kid-readable Yes/No icons).
+- No character names in v1; slots are identified visually by the saved character only.
 
 ## 10. Accessibility
 
@@ -147,23 +151,28 @@ Stack: preview on top (55% height), tab strip + carousel below (45%), Save butto
 
 ## 12. Open Questions
 
-Resolved from previous round:
+Resolved:
 
 - ✅ Top + Bottom split, not whole outfits.
 - ✅ Tabs (one category at a time), not all-at-once grid.
 - ✅ Realistic skin tones only in v1.
 - ✅ Home screen has a hand-drawn mascot in Claire's style.
+- ✅ No character names in v1.
+- ✅ Icons/mascot: built by us in Claire's style for v1 (her originals possibly scanned in later). Character parts hand-rolled as simple SVGs first.
+- ✅ Idle animation on preview and mascot (blink + sway).
+- ✅ Two save slots.
+- ✅ No sound effects in v1. Background music in a later version.
+- ✅ Working title: "claire-banana-chicken" (final name TBD).
+- ✅ Four clothing patterns: plaid, rainbow, stripes, polka dot.
 
 Still open:
 
-- **Naming**: should the character get a name in v1, or skip and add later?
-- **Asset source**: I'd like to ship the *icons and mascot* in Claire's style (asking her to draw the final versions on paper that we then scan / clean up). The *character preview parts* (skin, hair, clothing pieces) I'd hand-roll as simple SVGs first so we can iterate, then upgrade. OK?
-- **Preview pose**: static front-facing only, or a small idle animation (blink + sway)?
-- **Save slots**: one, or several (for siblings)?
-- **Sound**: ship with audio in v1 or defer?
-- **App / mascot name**: repo is "claire-banana-chicken" — is that the working title? Does the mascot have a name?
-- **Patterned clothing**: how many patterns in v1? Suggest: plaid, rainbow, stripes, polka dot (4) — enough to feel rich without exploding the asset list.
-- **For Claire**: do you want to draw the final mascot and tab icons yourself on paper and have us scan them in? That would make this *your* game.
+- **Mascot identity**: is the home-screen mascot a specific recurring character (with its own look/personality, "the guide"), or just a generic kid-drawn stand-in that empty slots show as a prompt?
+- **Patterned clothing recoloring**: do patterns have fixed colors (rainbow is always rainbow, plaid is fixed red/black, etc.) or can patterned items be recolored too?
+- **Settings affordance**: with no audio in v1, is there anything to put in a settings drawer? Probably drop it from v1 and add when music ships.
+- **v1 asset counts**: full target counts in §4 are ambitious for a first release. Ship the full set, or a smaller "starter" set (e.g. 4 of each category) and grow it after first feedback from Claire playing it?
+- **Edit vs Surprise interplay**: when editing an already-saved character, should the Surprise 🎲 button be allowed (it overwrites their work) or hidden?
+- **Mid-edit exit**: if a kid taps Home before saving, do we silently lose changes, auto-save a draft, or prompt?
 
 ## 13. Acceptance Criteria (draft)
 

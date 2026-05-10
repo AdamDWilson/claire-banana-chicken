@@ -212,7 +212,8 @@ function TabBody({ tab, character, set }: TabBodyProps) {
           />
         </>
       );
-    case 'eyes':
+    case 'eyes': {
+      const currentEye = EYE_STYLES.find((s) => s.id === character.eyeStyleId);
       return (
         <>
           <Row
@@ -224,14 +225,17 @@ function TabBody({ tab, character, set }: TabBodyProps) {
             selectedId={character.eyeStyleId}
             onPick={(id) => set('eyeStyleId', id)}
           />
-          <ColorRow
-            label="Eye color"
-            colors={EYE_COLORS}
-            selectedId={character.eyeColorId}
-            onPick={(id) => set('eyeColorId', id)}
-          />
+          {currentEye?.usesColor && (
+            <ColorRow
+              label="Eye color"
+              colors={EYE_COLORS}
+              selectedId={character.eyeColorId}
+              onPick={(id) => set('eyeColorId', id)}
+            />
+          )}
         </>
       );
+    }
     case 'mouth':
       return (
         <Row

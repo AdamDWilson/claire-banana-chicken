@@ -18,20 +18,17 @@ const linecaps = {
 export function BodyBase({ skin }: { skin: string }) {
   return (
     <g>
-      {/* Legs (so bottoms cover them) */}
+      {/* Legs — closed skin tubes so bare legs (shorts / skirt) read as a
+          real limb. Pants are wide enough to cover these completely. */}
       <path
-        d="M 85 215 Q 82 260 84 295"
+        d="M 80 215 Q 78 258 82 296 Q 86 300 92 298 Q 96 258 94 215 Z"
         fill={skin}
-        stroke={INK}
-        strokeWidth={STROKE}
-        strokeLinecap="round"
+        {...linecaps}
       />
       <path
-        d="M 115 215 Q 118 260 116 295"
+        d="M 120 215 Q 122 258 118 296 Q 114 300 108 298 Q 104 258 106 215 Z"
         fill={skin}
-        stroke={INK}
-        strokeWidth={STROKE}
-        strokeLinecap="round"
+        {...linecaps}
       />
       {/* Torso silhouette */}
       <path
@@ -94,8 +91,11 @@ export function Hair({ style, color }: { style: string; color: string }) {
     case 'ha-long':
       return (
         <g>
+          {/* Outer silhouette around head + curtains down the sides. The
+              inner U opens wide across the face (x≈72-128 at eye level) so
+              the eyes and mouth aren't covered by the bangs. */}
           <path
-            d="M 56 80 Q 56 35 100 33 Q 144 35 144 80 Q 148 160 138 200 Q 130 175 130 130 Q 120 70 100 70 Q 80 70 70 130 Q 70 175 62 200 Q 52 160 56 80 Z"
+            d="M 56 80 Q 56 35 100 33 Q 144 35 144 80 Q 148 160 138 200 Q 130 175 130 120 Q 128 70 100 60 Q 72 70 70 120 Q 70 175 62 200 Q 52 160 56 80 Z"
             fill={color}
             {...linecaps}
           />
@@ -167,10 +167,14 @@ export function Hair({ style, color }: { style: string; color: string }) {
 export function Eyes({ style, color }: { style: string; color: string }) {
   switch (style) {
     case 'ey-dots':
+      // White sclera ring keeps the dot visible on dark skin tones where
+      // INK would otherwise blend into the face.
       return (
-        <g fill={INK}>
-          <circle cx={84} cy={85} r={4} />
-          <circle cx={116} cy={85} r={4} />
+        <g>
+          <circle cx={84} cy={85} r={5.5} fill="#fff" stroke={INK} strokeWidth={2} />
+          <circle cx={84} cy={85} r={3} fill={INK} />
+          <circle cx={116} cy={85} r={5.5} fill="#fff" stroke={INK} strokeWidth={2} />
+          <circle cx={116} cy={85} r={3} fill={INK} />
         </g>
       );
     case 'ey-round':
@@ -237,7 +241,7 @@ export function Mouth({ style }: { style: string }) {
       return (
         <ellipse
           cx={100}
-          cy={112}
+          cy={108}
           rx={6}
           ry={7}
           fill="#9a3a3a"
@@ -486,16 +490,16 @@ export function Accessory({ id }: { id: string }): JSX.Element | null {
       return (
         <g>
           <path
-            d="M 70 40 Q 60 30 60 48 Q 70 58 80 50 Z"
+            d="M 90 40 Q 80 30 80 48 Q 90 58 100 50 Z"
             fill="#ff8fbf"
             {...linecaps}
           />
           <path
-            d="M 90 40 Q 100 30 100 48 Q 90 58 80 50 Z"
+            d="M 110 40 Q 120 30 120 48 Q 110 58 100 50 Z"
             fill="#ff8fbf"
             {...linecaps}
           />
-          <circle cx={80} cy={49} r={4} fill="#ff8fbf" {...linecaps} />
+          <circle cx={100} cy={49} r={4} fill="#ff8fbf" {...linecaps} />
         </g>
       );
     default:

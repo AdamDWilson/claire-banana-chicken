@@ -10,6 +10,7 @@ export function Mascot({ size = 220 }: { size?: number }) {
       height={size * 1.27}
       role="img"
       aria-label="Tap to make a character"
+      overflow="visible"
       style={{ animation: 'cbc-bob 2.4s ease-in-out infinite' }}
     >
       <g

@@ -267,7 +267,7 @@ export function Mouth({ style }: { style: string }) {
 // Real T-shirt silhouette: rounded neckline, sloped shoulders, cap sleeves
 // flaring out past the body, slightly tapered hem.
 const shirtPath =
-  'M 66 142 Q 100 156 134 142 L 150 138 Q 168 138 170 152 L 174 178 Q 168 184 142 180 L 142 232 Q 100 244 58 232 L 58 180 Q 32 184 26 178 L 30 152 Q 32 138 50 138 L 66 142 Z';
+  'M 70 132 Q 100 148 130 132 L 150 132 Q 168 132 170 148 L 174 178 Q 168 184 142 180 L 142 232 Q 100 244 58 232 L 58 180 Q 32 184 26 178 L 30 148 Q 32 132 50 132 L 70 132 Z';
 
 export function Top({ id, color }: { id: string; color: string }) {
   switch (id) {

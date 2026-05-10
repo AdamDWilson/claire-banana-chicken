@@ -1,0 +1,140 @@
+:root {
+  --cbc-bg: #fff7e8;
+  --cbc-bg-2: #ffeec9;
+  --cbc-ink: #3a2a1a;
+  --cbc-ink-soft: #5a4632;
+  --cbc-accent: #ff7a59;
+  --cbc-accent-2: #ffd166;
+  --cbc-good: #6dbf83;
+  --cbc-paper: #fffbf2;
+  --cbc-shadow: 0 4px 0 0 rgba(58, 42, 26, 0.18);
+  --cbc-radius: 18px;
+  --cbc-stroke: 4px;
+
+  /* Hand-drawn font fallback chain */
+  --cbc-font: "Comic Sans MS", "Chalkboard SE", "Marker Felt", "Bradley Hand", system-ui, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  touch-action: manipulation;
+}
+
+body {
+  font-family: var(--cbc-font);
+  color: var(--cbc-ink);
+  background: var(--cbc-bg);
+  background-image: radial-gradient(
+      circle at 20% 10%,
+      rgba(255, 209, 102, 0.4),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 85% 90%,
+      rgba(255, 122, 89, 0.25),
+      transparent 45%
+    );
+  overflow: hidden;
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+@keyframes cbc-pop {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes cbc-sway {
+  0%,
+  100% {
+    transform: rotate(-1.2deg) translateY(0);
+  }
+  50% {
+    transform: rotate(1.2deg) translateY(-4px);
+  }
+}
+
+@keyframes cbc-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes cbc-blink {
+  0%,
+  92%,
+  100% {
+    transform: scaleY(1);
+  }
+  95%,
+  98% {
+    transform: scaleY(0.05);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

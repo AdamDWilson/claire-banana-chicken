@@ -1,0 +1,237 @@
+.cbc-designer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.cbc-designer__topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  gap: 10px;
+}
+
+.cbc-designer__title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--cbc-ink);
+}
+
+.cbc-designer__main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) minmax(360px, 1.5fr);
+  gap: 16px;
+  padding: 0 16px 8px;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.cbc-designer__preview {
+  background: var(--cbc-paper);
+  border: var(--cbc-stroke) solid var(--cbc-ink);
+  border-radius: 24px;
+  box-shadow: var(--cbc-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  min-height: 0;
+}
+
+.cbc-designer__panel {
+  background: var(--cbc-paper);
+  border: var(--cbc-stroke) solid var(--cbc-ink);
+  border-radius: 24px;
+  box-shadow: var(--cbc-shadow);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.cbc-tabs {
+  display: flex;
+  gap: 6px;
+  padding: 10px 10px 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.cbc-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.cbc-tab {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 10px;
+  min-width: 64px;
+  border: 3px solid transparent;
+  border-radius: 14px;
+  background: transparent;
+  color: var(--cbc-ink);
+  font-size: 0.85rem;
+}
+
+.cbc-tab--active {
+  background: var(--cbc-bg-2);
+  border-color: var(--cbc-ink);
+  box-shadow: var(--cbc-shadow);
+}
+
+.cbc-tabbody {
+  flex: 1;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.cbc-carousel {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 8px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.cbc-thumb {
+  flex: 0 0 auto;
+  width: 110px;
+  height: 130px;
+  border: 3px solid var(--cbc-ink);
+  border-radius: 18px;
+  background: var(--cbc-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  scroll-snap-align: start;
+  overflow: hidden;
+  box-shadow: 0 3px 0 0 rgba(58, 42, 26, 0.18);
+  transition: transform 100ms ease, box-shadow 100ms ease;
+}
+
+.cbc-thumb:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 0 rgba(58, 42, 26, 0.18);
+}
+
+.cbc-thumb--on {
+  border-color: var(--cbc-good);
+  border-width: 5px;
+  background: #f0fbef;
+}
+
+.cbc-thumb__art {
+  pointer-events: none;
+}
+
+.cbc-thumb__check {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  background: var(--cbc-good);
+  color: white;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+  border: 2px solid var(--cbc-ink);
+}
+
+.cbc-colorrow {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cbc-colorrow__label {
+  font-size: 0.95rem;
+  color: var(--cbc-ink-soft);
+}
+
+.cbc-colorrow__items {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+
+.cbc-swatch {
+  flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 3px solid var(--cbc-ink);
+  box-shadow: 0 3px 0 0 rgba(58, 42, 26, 0.18);
+  cursor: pointer;
+  transition: transform 100ms ease;
+}
+
+.cbc-swatch--on {
+  outline: 4px solid var(--cbc-good);
+  outline-offset: 2px;
+}
+
+.cbc-swatch:active {
+  transform: translateY(2px);
+}
+
+.cbc-designer__footer {
+  padding: 12px 16px 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.cbc-celebrate {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(58, 42, 26, 0.35);
+  z-index: 200;
+}
+
+.cbc-celebrate__card {
+  background: var(--cbc-good);
+  color: white;
+  border: var(--cbc-stroke) solid var(--cbc-ink);
+  border-radius: 24px;
+  padding: 24px 32px;
+  box-shadow: var(--cbc-shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  animation: cbc-pop 400ms ease;
+}
+
+.cbc-celebrate__card p {
+  margin: 0;
+}
+
+/* Portrait: stack preview on top */
+@media (orientation: portrait) {
+  .cbc-designer__main {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(220px, 45%) 1fr;
+  }
+}

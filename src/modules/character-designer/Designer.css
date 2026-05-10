@@ -165,9 +165,11 @@
   display: flex;
   gap: 10px;
   overflow-x: auto;
-  /* Vertical padding so the 6 px outline ring on the selected swatch isn't
-     clipped by the implicit overflow-y: hidden that pairs with overflow-x. */
-  padding: 8px 0;
+  /* Padding on all four sides so the 6 px outline ring on the selected
+     swatch isn't clipped — overflow-x: auto implicitly sets
+     overflow-y: hidden, and the first/last swatches' rings would also
+     clip against the row's left/right edges without horizontal padding. */
+  padding: 8px;
 }
 
 .cbc-swatch {

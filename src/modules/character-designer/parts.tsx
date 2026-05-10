@@ -39,14 +39,16 @@ export function BodyBase({ skin }: { skin: string }) {
         fill={skin}
         {...linecaps}
       />
-      {/* Arms — chunky tubes so the forearm/hand peeks out below the sleeve */}
+      {/* Arms — tubes hanging from under the cap sleeves. Outer edge sits at
+          x≈30/170 (well past the shirt body hem at x=58/142), so the forearm
+          and hand read as a real limb rather than a thin sliver of stroke. */}
       <path
-        d="M 70 138 Q 50 175 54 215 Q 58 226 70 224 Q 78 220 76 200 Q 78 170 80 142 Z"
+        d="M 50 138 Q 28 180 32 220 Q 36 232 48 230 Q 60 226 60 200 Q 60 175 66 142 Z"
         fill={skin}
         {...linecaps}
       />
       <path
-        d="M 130 138 Q 150 175 146 215 Q 142 226 130 224 Q 122 220 124 200 Q 122 170 120 142 Z"
+        d="M 150 138 Q 172 180 168 220 Q 164 232 152 230 Q 140 226 140 200 Q 140 175 134 142 Z"
         fill={skin}
         {...linecaps}
       />
